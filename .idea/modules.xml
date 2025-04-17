@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/12Watermark.iml" filepath="$PROJECT_DIR$/.idea/modules/12Watermark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Watermark/task/12Watermark.Watermark-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Watermark/task/12Watermark.Watermark-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Watermark/task/12Watermark.Watermark-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Watermark/task/12Watermark.Watermark-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Watermark/task/12Watermark.Watermark-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Watermark/task/12Watermark.Watermark-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/12Watermark.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/12Watermark.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/12Watermark.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/12Watermark.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/12Watermark.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/12Watermark.util.test.iml" />
+    </modules>
+  </component>
+</project>

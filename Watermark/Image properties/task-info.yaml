@@ -1,0 +1,22 @@
+type: edu
+files:
+  - name: src/watermark/Main.kt
+    visible: true
+    learner_created: false
+  - name: test/10151rgb.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/10151rgba.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/WatermarkTest.kt
+    visible: false
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/17145#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Thu, 17 Apr 2025 10:17:50 UTC"
+record: -1

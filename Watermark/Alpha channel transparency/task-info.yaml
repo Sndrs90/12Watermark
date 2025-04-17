@@ -1,0 +1,47 @@
+type: edu
+files:
+  - name: src/watermark/Main.kt
+    visible: true
+    learner_created: false
+  - name: test/70x50.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/bits16.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/grey.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/image3.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/out1.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/out2.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/out3.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/watermark2.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/watermark3.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: test/WatermarkTest.kt
+    visible: false
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/17147#comment
+status: Unchecked
+record: -1
