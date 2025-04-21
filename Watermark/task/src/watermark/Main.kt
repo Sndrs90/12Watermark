@@ -1,6 +1,7 @@
 package watermark
 
 import java.awt.Color
+import java.awt.Transparency
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
@@ -28,6 +29,14 @@ fun main() {
     }
     if (!isWatermarkValid(watermark, image)) return
 
+    val input = when (watermark.transparency) {
+        Transparency.TRANSLUCENT -> {
+            println("Do you want to use the watermark's Alpha channel?")
+            readln().lowercase()
+        }
+        else -> null
+    }
+
     val weight = getWeight()
     if (!isWeightValid(weight)) return
 
@@ -36,7 +45,10 @@ fun main() {
     val extension = outputPath.substringAfterLast('.')
     val output = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_RGB)
 
-    applyWatermark(image, watermark, output, weight)
+    when (input) {
+        "yes" -> applyTransparent(image, watermark, output, weight)
+        else -> applyWatermark(image, watermark, output, weight)
+    }
     saveOutput(output, extension, outputPath)
 }
 
@@ -143,6 +155,39 @@ private fun applyWatermark(
                     (weight * w.blue + (100 - weight) * i.blue) / 100
                 )
                 output.setRGB(x, y, color.rgb)
+            } catch (e: Exception) {
+                println("An error occurred at pixel ($x, $y)")
+            }
+        }
+    }
+}
+
+private fun applyTransparent(
+    image: BufferedImage,
+    watermark: BufferedImage,
+    output: BufferedImage,
+    weight: Int
+) {
+    for (y in 0 until image.height) {
+        for (x in 0 until image.width) {
+            try {
+                val i = Color(image.getRGB(x, y))
+                val w = Color(watermark.getRGB(x, y), true)
+                val alpha = w.alpha
+                when (alpha) {
+                    0 -> {
+                        val color = Color(i.red, i.green, i.blue)
+                        output.setRGB(x, y, color.rgb)
+                    }
+                    else -> {
+                        val color = Color(
+                            (weight * w.red + (100 - weight) * i.red) / 100,
+                            (weight * w.green + (100 - weight) * i.green) / 100,
+                            (weight * w.blue + (100 - weight) * i.blue) / 100
+                        )
+                        output.setRGB(x, y, color.rgb)
+                    }
+                }
             } catch (e: Exception) {
                 println("An error occurred at pixel ($x, $y)")
             }
