@@ -19,19 +19,11 @@ files:
     visible: false
     is_binary: true
     learner_created: false
-  - name: test/out1.png
-    visible: false
-    is_binary: true
-    learner_created: false
   - name: test/out2.png
     visible: false
     is_binary: true
     learner_created: false
   - name: test/out3.png
-    visible: false
-    is_binary: true
-    learner_created: false
-  - name: test/out4.png
     visible: false
     is_binary: true
     learner_created: false
@@ -46,6 +38,17 @@ files:
   - name: test/WatermarkTest.kt
     visible: false
     learner_created: false
+  - name: test/out4.png
+    visible: true
+    is_binary: true
+    learner_created: true
+  - name: test/out1.png
+    visible: true
+    is_binary: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/17148#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 22 Apr 2025 07:36:52 UTC"
 record: -1

@@ -34,8 +34,17 @@ fun main() {
             println("Do you want to use the watermark's Alpha channel?")
             readln().lowercase()
         }
-        else -> null
+        else -> {
+            println("Do you want to set a transparency color?")
+            readln().lowercase()
+        }
     }
+
+    val inputColor = if (input == "yes" && watermark.transparency != Transparency.TRANSLUCENT) {
+        println("Input a transparency color ([Red] [Green] [Blue]):")
+        readln().trim()
+    } else ""
+    if (inputColor.isNotEmpty() && !isTransparencyColorValid(inputColor)) return
 
     val weight = getWeight()
     if (!isWeightValid(weight)) return
@@ -46,7 +55,10 @@ fun main() {
     val output = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_RGB)
 
     when (input) {
-        "yes" -> applyTransparent(image, watermark, output, weight)
+        "yes" -> {
+            if (watermark.transparency == Transparency.TRANSLUCENT) applyTransparent(image, watermark, output, weight)
+            else applyTransparentColor(inputColor, image, watermark, output, weight)
+        }
         else -> applyWatermark(image, watermark, output, weight)
     }
     saveOutput(output, extension, outputPath)
@@ -176,6 +188,50 @@ private fun applyTransparent(
                 val alpha = w.alpha
                 when (alpha) {
                     0 -> {
+                        val color = Color(i.red, i.green, i.blue)
+                        output.setRGB(x, y, color.rgb)
+                    }
+                    else -> {
+                        val color = Color(
+                            (weight * w.red + (100 - weight) * i.red) / 100,
+                            (weight * w.green + (100 - weight) * i.green) / 100,
+                            (weight * w.blue + (100 - weight) * i.blue) / 100
+                        )
+                        output.setRGB(x, y, color.rgb)
+                    }
+                }
+            } catch (e: Exception) {
+                println("An error occurred at pixel ($x, $y)")
+            }
+        }
+    }
+}
+
+private fun isTransparencyColorValid(inputColor: String): Boolean {
+    val regex = Regex("""\b(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d) (25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d) (25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\b""")
+    if (!regex.matches(inputColor)) {
+        println("The transparency color input is invalid.")
+        return false
+    }
+    return true
+}
+private fun applyTransparentColor(
+    inputColor: String,
+    image: BufferedImage,
+    watermark: BufferedImage,
+    output: BufferedImage,
+    weight: Int
+) {
+    val (red, green, blue) = inputColor.split(" ").map { it.toInt() }
+    val transparentColor = Color(red, green, blue)
+
+    for (y in 0 until image.height) {
+        for (x in 0 until image.width) {
+            try {
+                val i = Color(image.getRGB(x, y))
+                val w = Color(watermark.getRGB(x, y))
+                when (w) {
+                    transparentColor -> {
                         val color = Color(i.red, i.green, i.blue)
                         output.setRGB(x, y, color.rgb)
                     }
