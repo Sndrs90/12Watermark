@@ -3,6 +3,7 @@ import org.hyperskill.hstest.stage.StageTest
 import org.hyperskill.hstest.testcase.CheckResult
 import org.hyperskill.hstest.testing.TestedProgram
 import java.awt.Color
+import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 import kotlin.math.abs
@@ -10,7 +11,7 @@ import kotlin.math.abs
 class CardGameTest : StageTest<Any>() {
 
     @DynamicTest(order = 1)
-    fun imageNotExistTest4(): CheckResult {
+    fun imageNotExistTest5(): CheckResult {
         val main = TestedProgram()
         var outputString = main.start().trim().lowercase()
         var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
@@ -26,7 +27,7 @@ class CardGameTest : StageTest<Any>() {
     }
 
     @DynamicTest(order = 2)
-    fun imageColorCompLess3Test4(): CheckResult {
+    fun imageColorCompLess3Test5(): CheckResult {
         val main = TestedProgram()
         var outputString = main.start().trim().lowercase()
         var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
@@ -54,7 +55,7 @@ class CardGameTest : StageTest<Any>() {
     }
 
     @DynamicTest(order = 3)
-    fun imageBitsPerPixelTest4(): CheckResult {
+    fun imageBitsPerPixelTest5(): CheckResult {
         val main = TestedProgram()
         var outputString = main.start().trim().lowercase()
         var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
@@ -82,19 +83,19 @@ class CardGameTest : StageTest<Any>() {
     }
 
     @DynamicTest(order = 4)
-    fun watermarkNotExistTest4(): CheckResult {
+    fun watermarkNotExistTest5(): CheckResult {
         val main = TestedProgram()
         var outputString = main.start().trim().lowercase()
         var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
         if ( position  == -1 ) return CheckResult(false, "Invalid prompt for the image filename.")
 
         try {
-            val infile = "test${File.separator}image4.png"
+            val infile = "test${File.separator}image5.png"
             val inputFile = File(infile)
             if (!inputFile.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            outputString = main.execute("test${File.separator}image4.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
             if (position == -1) return CheckResult(
                 false,
@@ -117,14 +118,14 @@ class CardGameTest : StageTest<Any>() {
     }
 
     @DynamicTest(order = 5)
-    fun watermarkColorCompLess3Test4(): CheckResult {
+    fun watermarkColorCompLess3Test5(): CheckResult {
         val main = TestedProgram()
         var outputString = main.start().trim().lowercase()
         var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
         if ( position  == -1 ) return CheckResult(false, "Invalid prompt for the image filename.")
 
         try {
-            val infile1 = "test${File.separator}image4.png"
+            val infile1 = "test${File.separator}image5.png"
             val inputFile1 = File(infile1)
             if (!inputFile1.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
@@ -134,7 +135,7 @@ class CardGameTest : StageTest<Any>() {
             if (!inputFile2.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            outputString = main.execute("test${File.separator}image4.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
             if (position == -1) return CheckResult(
                 false,
@@ -157,14 +158,14 @@ class CardGameTest : StageTest<Any>() {
     }
 
     @DynamicTest(order = 6)
-    fun watermarkBitsPerPixelTest4(): CheckResult {
+    fun watermarkBitsPerPixelTest5(): CheckResult {
         val main = TestedProgram()
         var outputString = main.start().trim().lowercase()
         var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
         if ( position  == -1 ) return CheckResult(false, "Invalid prompt for the image filename.")
 
         try {
-            val infile1 = "test${File.separator}image4.png"
+            val infile1 = "test${File.separator}image5.png"
             val inputFile1 = File(infile1)
             if (!inputFile1.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
@@ -174,7 +175,7 @@ class CardGameTest : StageTest<Any>() {
             if (!inputFile2.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            outputString = main.execute("test${File.separator}image4.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
             if (position == -1) return CheckResult(
                 false,
@@ -197,35 +198,35 @@ class CardGameTest : StageTest<Any>() {
     }
 
     @DynamicTest(order = 7)
-    fun notSameDimensionsTest4(): CheckResult {
+    fun wideWatermarkTest5(): CheckResult {
         val main = TestedProgram()
         var outputString = main.start().trim().lowercase()
         var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
         if ( position  == -1 ) return CheckResult(false, "Invalid prompt for the image filename.")
 
         try {
-            val infile1 = "test${File.separator}image4.png"
+            val infile1 = "test${File.separator}image5.png"
             val inputFile1 = File(infile1)
             if (!inputFile1.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            val infile2 = "test${File.separator}70x50.png"
+            val infile2 = "test${File.separator}wide.png"
             val inputFile2 = File(infile2)
             if (!inputFile2.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            outputString = main.execute("test${File.separator}image4.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
             if (position == -1) return CheckResult(
                 false,
                 "Incorrect output, after an image filename was input."
             )
 
-            outputString = main.execute("test${File.separator}70x50.png").trim().lowercase()
-            position = checkOutput(outputString, 0, "The image and watermark dimensions are different.".lowercase())
+            outputString = main.execute("test${File.separator}wide.png").trim().lowercase()
+            position = checkOutput(outputString, 0, "The watermark's dimensions are larger.".lowercase())
             if (position == -1) return CheckResult(
                 false,
-                "Incorrect output, when The image and watermark dimensions are different."
+                "Incorrect output, when the watermark image is wider than the original image."
             )
         } catch  (e: Exception) {
             return CheckResult(false, "An exception was thrown, when trying to open an image file.")
@@ -237,7 +238,277 @@ class CardGameTest : StageTest<Any>() {
     }
 
     @DynamicTest(order = 8)
-    fun usingAlphaChannelTest4(): CheckResult {
+    fun tallWatermarkTest5(): CheckResult {
+        val main = TestedProgram()
+        var outputString = main.start().trim().lowercase()
+        var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
+        if ( position  == -1 ) return CheckResult(false, "Invalid prompt for the image filename.")
+
+        try {
+            val infile1 = "test${File.separator}image5.png"
+            val inputFile1 = File(infile1)
+            if (!inputFile1.exists()) {
+                return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
+            }
+            val infile2 = "test${File.separator}tall.png"
+            val inputFile2 = File(infile2)
+            if (!inputFile2.exists()) {
+                return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
+            }
+            outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
+            position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after an image filename was input."
+            )
+
+            outputString = main.execute("test${File.separator}tall.png").trim().lowercase()
+            position = checkOutput(outputString, 0, "The watermark's dimensions are larger.".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, when the watermark image is taller than the original image."
+            )
+        } catch  (e: Exception) {
+            return CheckResult(false, "An exception was thrown, when trying to open an image file.")
+        }
+
+        if (!main.isFinished) return CheckResult(false, "The application didn't exit.")
+
+        return CheckResult.correct()
+    }
+
+    @DynamicTest(order = 9)
+    fun invalidPositionMethodTest5(): CheckResult {
+        val posMethodInputs = listOf("pos", "0 0", "top")
+        for (posMethodInput in posMethodInputs) {
+            val main = TestedProgram()
+            var outputString = main.start().trim().lowercase()
+            var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
+            if (position == -1) return CheckResult(false, "Invalid prompt for the image filename.")
+
+            try {
+                val infile1 = "test${File.separator}image5.png"
+                val inputFile1 = File(infile1)
+                if (!inputFile1.exists()) {
+                    return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
+                }
+                val infile2 = "test${File.separator}logorgb.png"
+                val inputFile2 = File(infile2)
+                if (!inputFile2.exists()) {
+                    return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
+                }
+                outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
+                position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
+                if (position == -1) return CheckResult(
+                    false,
+                    "Incorrect output, after an image filename was input."
+                )
+
+                outputString = main.execute("test${File.separator}logorgb.png").trim().lowercase()
+                position = checkOutput(outputString, 0, "Do you want to set a transparency color?".lowercase())
+                if (position == -1) return CheckResult(
+                    false,
+                    "Incorrect output, after a watermark filename was input."
+                )
+            } catch (e: Exception) {
+                return CheckResult(false, "An exception was thrown, when trying to open an image file.")
+            }
+
+            outputString = main.execute("yes").trim().lowercase()
+            position = checkOutput(outputString, 0, "Input a transparency color ([Red] [Green] [Blue]):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after accepting the use of a transparent color."
+            )
+
+            outputString = main.execute("0 0 0").trim().lowercase()
+            position =
+                checkOutput(outputString, 0, "Input the watermark transparency percentage (Integer 0-100):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after a transparent color input."
+            )
+
+            outputString = main.execute("20").trim().lowercase()
+            position = checkOutput(outputString, 0, "Choose the position method (single, grid):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, when the transparency percentage was input."
+            )
+
+            outputString = main.execute(posMethodInput).trim().lowercase()
+            position = checkOutput(outputString, 0, "The position method input is invalid.".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after wrong input position method."
+            )
+
+            if (!main.isFinished) return CheckResult(false, "The application didn't exit.")
+        }
+
+        return CheckResult.correct()
+    }
+
+    @DynamicTest(order = 10)
+    fun invalidPositionTest5(): CheckResult {
+        val posInputs = listOf("top", "up right", "100-100")
+        for (posInput in posInputs) {
+            val main = TestedProgram()
+            var outputString = main.start().trim().lowercase()
+            var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
+            if (position == -1) return CheckResult(false, "Invalid prompt for the image filename.")
+
+            try {
+                val infile1 = "test${File.separator}image5.png"
+                val inputFile1 = File(infile1)
+                if (!inputFile1.exists()) {
+                    return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
+                }
+                val infile2 = "test${File.separator}logorgb.png"
+                val inputFile2 = File(infile2)
+                if (!inputFile2.exists()) {
+                    return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
+                }
+                outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
+                position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
+                if (position == -1) return CheckResult(
+                    false,
+                    "Incorrect output, after an image filename was input."
+                )
+
+                outputString = main.execute("test${File.separator}logorgb.png").trim().lowercase()
+                position = checkOutput(outputString, 0, "Do you want to set a transparency color?".lowercase())
+                if (position == -1) return CheckResult(
+                    false,
+                    "Incorrect output, after a watermark filename was input."
+                )
+            } catch (e: Exception) {
+                return CheckResult(false, "An exception was thrown, when trying to open an image file.")
+            }
+
+            outputString = main.execute("yes").trim().lowercase()
+            position = checkOutput(outputString, 0, "Input a transparency color ([Red] [Green] [Blue]):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after accepting the use of a transparent color."
+            )
+
+            outputString = main.execute("0 0 0").trim().lowercase()
+            position =
+                checkOutput(outputString, 0, "Input the watermark transparency percentage (Integer 0-100):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after a transparent color input."
+            )
+
+            outputString = main.execute("20").trim().lowercase()
+            position = checkOutput(outputString, 0, "Choose the position method (single, grid):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, when the transparency percentage was input."
+            )
+
+            outputString = main.execute("single").trim().lowercase()
+            position = checkOutput(outputString, 0, "Input the watermark position ([x 0-300] [y 0-600]):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after wrong input position method."
+            )
+
+            outputString = main.execute(posInput).trim().lowercase()
+            position = checkOutput(outputString, 0, "The position input is invalid.".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after wrong position input."
+            )
+
+            if (!main.isFinished) return CheckResult(false, "The application didn't exit.")
+        }
+
+        return CheckResult.correct()
+    }
+
+    @DynamicTest(order = 11)
+    fun outOfRangeTest5(): CheckResult {
+        val posInputs = listOf("-1 300", "301 600", "0 -1", "0 601")
+        for (posInput in posInputs) {
+            val main = TestedProgram()
+            var outputString = main.start().trim().lowercase()
+            var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
+            if (position == -1) return CheckResult(false, "Invalid prompt for the image filename.")
+
+            try {
+                val infile1 = "test${File.separator}image5.png"
+                val inputFile1 = File(infile1)
+                if (!inputFile1.exists()) {
+                    return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
+                }
+                val infile2 = "test${File.separator}logorgb.png"
+                val inputFile2 = File(infile2)
+                if (!inputFile2.exists()) {
+                    return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
+                }
+                outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
+                position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
+                if (position == -1) return CheckResult(
+                    false,
+                    "Incorrect output, after an image filename was input."
+                )
+
+                outputString = main.execute("test${File.separator}logorgb.png").trim().lowercase()
+                position = checkOutput(outputString, 0, "Do you want to set a transparency color?".lowercase())
+                if (position == -1) return CheckResult(
+                    false,
+                    "Incorrect output, after a watermark filename was input."
+                )
+            } catch (e: Exception) {
+                return CheckResult(false, "An exception was thrown, when trying to open an image file.")
+            }
+
+            outputString = main.execute("yes").trim().lowercase()
+            position = checkOutput(outputString, 0, "Input a transparency color ([Red] [Green] [Blue]):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after accepting the use of a transparent color."
+            )
+
+            outputString = main.execute("0 0 0").trim().lowercase()
+            position =
+                checkOutput(outputString, 0, "Input the watermark transparency percentage (Integer 0-100):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after a transparent color input."
+            )
+
+            outputString = main.execute("20").trim().lowercase()
+            position = checkOutput(outputString, 0, "Choose the position method (single, grid):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, when the transparency percentage was input."
+            )
+
+            outputString = main.execute("single").trim().lowercase()
+            position = checkOutput(outputString, 0, "Input the watermark position ([x 0-300] [y 0-600]):".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after wrong input position method."
+            )
+
+            outputString = main.execute(posInput).trim().lowercase()
+            position = checkOutput(outputString, 0, "The position input is out of range.".lowercase())
+            if (position == -1) return CheckResult(
+                false,
+                "Incorrect output, after input out of range position."
+            )
+
+            if (!main.isFinished) return CheckResult(false, "The application didn't exit.")
+        }
+
+        return CheckResult.correct()
+    }
+
+    @DynamicTest(order = 12)
+    fun gridPositionUsingTransparencyTest5(): CheckResult {
         try {
             val outFile = File("test${File.separator}out1.png")
             if (outFile.exists()) outFile.delete()
@@ -251,25 +522,25 @@ class CardGameTest : StageTest<Any>() {
         if ( position  == -1 ) return CheckResult(false, "Invalid prompt for the image filename.")
 
         try {
-            val infile1 = "test${File.separator}image4.png"
+            val infile1 = "test${File.separator}image5.png"
             val inputFile1 = File(infile1)
             if (!inputFile1.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            val infile2 = "test${File.separator}watermark3.png"
+            val infile2 = "test${File.separator}logorgb.png"
             val inputFile2 = File(infile2)
             if (!inputFile2.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            outputString = main.execute("test${File.separator}image4.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
             if (position == -1) return CheckResult(
                 false,
                 "Incorrect output, after an image filename was input."
             )
 
-            outputString = main.execute("test${File.separator}watermark3.png").trim().lowercase()
-            position = checkOutput(outputString, 0, "Do you want to use the watermark's Alpha channel?".lowercase())
+            outputString = main.execute("test${File.separator}logorgb.png").trim().lowercase()
+            position = checkOutput(outputString, 0, "Do you want to set a transparency color?".lowercase())
             if (position == -1) return CheckResult(
                 false,
                 "Incorrect output, after a watermark filename was input."
@@ -279,17 +550,31 @@ class CardGameTest : StageTest<Any>() {
         }
 
         outputString = main.execute("yes").trim().lowercase()
+        position = checkOutput(outputString, 0, "Input a transparency color ([Red] [Green] [Blue]):".lowercase())
+        if (position == -1) return CheckResult(
+            false,
+            "Incorrect output, after accepting the use of a transparent color."
+        )
+
+        outputString = main.execute("0 0 0").trim().lowercase()
         position = checkOutput(outputString, 0, "Input the watermark transparency percentage (Integer 0-100):".lowercase())
         if (position == -1) return CheckResult(
             false,
-            "Incorrect output, after declining to use the alpha channel."
+            "Incorrect output, after a transparent color input."
         )
 
-        outputString = main.execute("25").trim().lowercase()
-        position = checkOutput(outputString, 0, "Input the output image filename (jpg or png extension):".lowercase())
+        outputString = main.execute("15").trim().lowercase()
+        position = checkOutput(outputString, 0, "Choose the position method (single, grid):".lowercase())
         if (position == -1) return CheckResult(
             false,
             "Incorrect output, when the transparency percentage was input."
+        )
+
+        outputString = main.execute("grid").trim().lowercase()
+        position = checkOutput(outputString, 0, "Input the output image filename (jpg or png extension):".lowercase())
+        if (position == -1) return CheckResult(
+            false,
+            "Incorrect output, after the position method input."
         )
 
         outputString = main.execute("test${File.separator}out1.png").trim().lowercase()
@@ -307,17 +592,18 @@ class CardGameTest : StageTest<Any>() {
             "The output file hasn't been created."
         )
 
-        if (!checkIfCorrectOutputFileAlphaS4(25, 50000,
-                "test${File.separator}image4.png", "test${File.separator}watermark3.png", "test${File.separator}out1.png")) return CheckResult(
-            false,
-            "Incorrect output image file."
-        )
+        if (!checkIfCorrectOutputFileTransparencyColorGridS5(15, 50000,
+                "test${File.separator}image5.png", "test${File.separator}logorgb.png", "test${File.separator}out1.png", Color(0, 0, 0)))
+            return CheckResult(
+                false,
+                "Incorrect output image file."
+            )
 
         return CheckResult.correct()
     }
 
-    @DynamicTest(order = 9)
-    fun notUsingAlphaChannelTest4(): CheckResult {
+    @DynamicTest(order = 13)
+    fun gridPositionAlphaChannelTest5(): CheckResult {
         try {
             val outFile = File("test${File.separator}out2.png")
             if (outFile.exists()) outFile.delete()
@@ -331,24 +617,24 @@ class CardGameTest : StageTest<Any>() {
         if ( position  == -1 ) return CheckResult(false, "Invalid prompt for the image filename.")
 
         try {
-            val infile1 = "test${File.separator}image4.png"
+            val infile1 = "test${File.separator}image5.png"
             val inputFile1 = File(infile1)
             if (!inputFile1.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            val infile2 = "test${File.separator}watermark3.png"
+            val infile2 = "test${File.separator}logorgba.png"
             val inputFile2 = File(infile2)
             if (!inputFile2.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            outputString = main.execute("test${File.separator}image4.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
             if (position == -1) return CheckResult(
                 false,
                 "Incorrect output, after an image filename was input."
             )
 
-            outputString = main.execute("test${File.separator}watermark3.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}logorgba.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Do you want to use the watermark's Alpha channel?".lowercase())
             if (position == -1) return CheckResult(
                 false,
@@ -358,18 +644,25 @@ class CardGameTest : StageTest<Any>() {
             return CheckResult(false, "An exception was thrown, when trying to open an image file.")
         }
 
-        outputString = main.execute("no").trim().lowercase()
+        outputString = main.execute("yes").trim().lowercase()
         position = checkOutput(outputString, 0, "Input the watermark transparency percentage (Integer 0-100):".lowercase())
         if (position == -1) return CheckResult(
             false,
-            "Incorrect output, after declining to use the alpha channel."
+            "Incorrect output, after accepting the use of a transparent color."
         )
 
-        outputString = main.execute("35").trim().lowercase()
-        position = checkOutput(outputString, 0, "Input the output image filename (jpg or png extension):".lowercase())
+        outputString = main.execute("25").trim().lowercase()
+        position = checkOutput(outputString, 0, "Choose the position method (single, grid):".lowercase())
         if (position == -1) return CheckResult(
             false,
             "Incorrect output, when the transparency percentage was input."
+        )
+
+        outputString = main.execute("grid").trim().lowercase()
+        position = checkOutput(outputString, 0, "Input the output image filename (jpg or png extension):".lowercase())
+        if (position == -1) return CheckResult(
+            false,
+            "Incorrect output, after the position method input."
         )
 
         outputString = main.execute("test${File.separator}out2.png").trim().lowercase()
@@ -387,17 +680,18 @@ class CardGameTest : StageTest<Any>() {
             "The output file hasn't been created."
         )
 
-        if (!checkIfCorrectOutputFileS4(35, 50000,
-                "test${File.separator}image4.png", "test${File.separator}watermark3.png", "test${File.separator}out2.png")) return CheckResult(
-            false,
-            "Incorrect output image file."
-        )
+        if (!checkIfCorrectOutputFileAlphaChannelGridS5(25, 50000,
+                "test${File.separator}image5.png", "test${File.separator}logorgba.png", "test${File.separator}out2.png"))
+            return CheckResult(
+                false,
+                "Incorrect output image file."
+            )
 
         return CheckResult.correct()
     }
 
-    @DynamicTest(order = 10)
-    fun noAlphaChanneNotUsingTransparencylTest4(): CheckResult {
+    @DynamicTest(order = 14)
+    fun singlePositionUsingTransparencyTest5(): CheckResult {
         try {
             val outFile = File("test${File.separator}out3.png")
             if (outFile.exists()) outFile.delete()
@@ -411,24 +705,24 @@ class CardGameTest : StageTest<Any>() {
         if ( position  == -1 ) return CheckResult(false, "Invalid prompt for the image filename.")
 
         try {
-            val infile1 = "test${File.separator}image4.png"
+            val infile1 = "test${File.separator}image5.png"
             val inputFile1 = File(infile1)
             if (!inputFile1.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            val infile2 = "test${File.separator}watermark2.png"
+            val infile2 = "test${File.separator}logorgb.png"
             val inputFile2 = File(infile2)
             if (!inputFile2.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            outputString = main.execute("test${File.separator}image4.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
             if (position == -1) return CheckResult(
                 false,
                 "Incorrect output, after an image filename was input."
             )
 
-            outputString = main.execute("test${File.separator}watermark2.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}logorgb.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Do you want to set a transparency color?".lowercase())
             if (position == -1) return CheckResult(
                 false,
@@ -438,18 +732,39 @@ class CardGameTest : StageTest<Any>() {
             return CheckResult(false, "An exception was thrown, when trying to open an image file.")
         }
 
-        outputString = main.execute("no").trim().lowercase()
+        outputString = main.execute("yes").trim().lowercase()
+        position = checkOutput(outputString, 0, "Input a transparency color ([Red] [Green] [Blue]):".lowercase())
+        if (position == -1) return CheckResult(
+            false,
+            "Incorrect output, after accepting the use of a transparent color."
+        )
+
+        outputString = main.execute("0 0 0").trim().lowercase()
         position = checkOutput(outputString, 0, "Input the watermark transparency percentage (Integer 0-100):".lowercase())
         if (position == -1) return CheckResult(
             false,
-            "Incorrect output, after declining to use a transparency color."
+            "Incorrect output, after a transparent color input."
         )
 
-        outputString = main.execute("27").trim().lowercase()
-        position = checkOutput(outputString, 0, "Input the output image filename (jpg or png extension):".lowercase())
+        outputString = main.execute("35").trim().lowercase()
+        position = checkOutput(outputString, 0, "Choose the position method (single, grid):".lowercase())
         if (position == -1) return CheckResult(
             false,
             "Incorrect output, when the transparency percentage was input."
+        )
+
+        outputString = main.execute("single").trim().lowercase()
+        position = checkOutput(outputString, 0, "Input the watermark position ([x 0-300] [y 0-600]):".lowercase())
+        if (position == -1) return CheckResult(
+            false,
+            "Incorrect output, after the position method input."
+        )
+
+        outputString = main.execute("200 200").trim().lowercase()
+        position = checkOutput(outputString, 0, "Input the output image filename (jpg or png extension):".lowercase())
+        if (position == -1) return CheckResult(
+            false,
+            "Incorrect output, after the position input."
         )
 
         outputString = main.execute("test${File.separator}out3.png").trim().lowercase()
@@ -467,17 +782,19 @@ class CardGameTest : StageTest<Any>() {
             "The output file hasn't been created."
         )
 
-        if (!checkIfCorrectOutputFileS4(27, 50000,
-                "test${File.separator}image4.png", "test${File.separator}watermark2.png", "test${File.separator}out3.png")) return CheckResult(
-            false,
-            "Incorrect output image file."
-        )
+        if (!checkIfCorrectOutputFileTransparencyColorSingleS5(35, 50000,
+                "test${File.separator}image5.png", "test${File.separator}logorgb.png", "test${File.separator}out3.png", Color(0, 0, 0),
+                200, 200))
+            return CheckResult(
+                false,
+                "Incorrect output image file."
+            )
 
         return CheckResult.correct()
     }
 
-    @DynamicTest(order = 11)
-    fun noAlphaChannelUsingTransparencyTest4(): CheckResult {
+    @DynamicTest(order = 15)
+    fun singlePositionAlphaChannelTest5(): CheckResult {
         try {
             val outFile = File("test${File.separator}out4.png")
             if (outFile.exists()) outFile.delete()
@@ -491,25 +808,25 @@ class CardGameTest : StageTest<Any>() {
         if ( position  == -1 ) return CheckResult(false, "Invalid prompt for the image filename.")
 
         try {
-            val infile1 = "test${File.separator}image4.png"
+            val infile1 = "test${File.separator}image5.png"
             val inputFile1 = File(infile1)
             if (!inputFile1.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            val infile2 = "test${File.separator}watermark2.png"
+            val infile2 = "test${File.separator}logorgba.png"
             val inputFile2 = File(infile2)
             if (!inputFile2.exists()) {
                 return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
             }
-            outputString = main.execute("test${File.separator}image4.png").trim().lowercase()
+            outputString = main.execute("test${File.separator}image5.png").trim().lowercase()
             position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
             if (position == -1) return CheckResult(
                 false,
                 "Incorrect output, after an image filename was input."
             )
 
-            outputString = main.execute("test${File.separator}watermark2.png").trim().lowercase()
-            position = checkOutput(outputString, 0, "Do you want to set a transparency color?".lowercase())
+            outputString = main.execute("test${File.separator}logorgba.png").trim().lowercase()
+            position = checkOutput(outputString, 0, "Do you want to use the watermark's Alpha channel?".lowercase())
             if (position == -1) return CheckResult(
                 false,
                 "Incorrect output, after a watermark filename was input."
@@ -519,24 +836,31 @@ class CardGameTest : StageTest<Any>() {
         }
 
         outputString = main.execute("yes").trim().lowercase()
-        position = checkOutput(outputString, 0, "Input a transparency color ([Red] [Green] [Blue]):".lowercase())
+        position = checkOutput(outputString, 0, "Input the watermark transparency percentage (Integer 0-100):".lowercase())
         if (position == -1) return CheckResult(
             false,
             "Incorrect output, after accepting the use of a transparent color."
         )
 
-        outputString = main.execute("255 255 255").trim().lowercase()
-        position = checkOutput(outputString, 0, "Input the watermark transparency percentage (Integer 0-100):".lowercase())
-        if (position == -1) return CheckResult(
-            false,
-            "Incorrect output, after a transparent color input."
-        )
-
-        outputString = main.execute("37").trim().lowercase()
-        position = checkOutput(outputString, 0, "Input the output image filename (jpg or png extension):".lowercase())
+        outputString = main.execute("50").trim().lowercase()
+        position = checkOutput(outputString, 0, "Choose the position method (single, grid):".lowercase())
         if (position == -1) return CheckResult(
             false,
             "Incorrect output, when the transparency percentage was input."
+        )
+
+        outputString = main.execute("single").trim().lowercase()
+        position = checkOutput(outputString, 0, "Input the watermark position ([x 0-300] [y 0-600]):".lowercase())
+        if (position == -1) return CheckResult(
+            false,
+            "Incorrect output, after the position method input."
+        )
+
+        outputString = main.execute("300 400").trim().lowercase()
+        position = checkOutput(outputString, 0, "Input the output image filename (jpg or png extension):".lowercase())
+        if (position == -1) return CheckResult(
+            false,
+            "Incorrect output, after the position input."
         )
 
         outputString = main.execute("test${File.separator}out4.png").trim().lowercase()
@@ -554,69 +878,12 @@ class CardGameTest : StageTest<Any>() {
             "The output file hasn't been created."
         )
 
-        if (!checkIfCorrectOutputFileTransparencyColorS4(37, 50000,
-                "test${File.separator}image4.png", "test${File.separator}watermark2.png", "test${File.separator}out4.png", Color(255, 255, 255)))
+        if (!checkIfCorrectOutputFileAlphaChannelSingleS5(50, 50000,
+                "test${File.separator}image5.png", "test${File.separator}logorgba.png", "test${File.separator}out4.png", 300, 400))
             return CheckResult(
                 false,
                 "Incorrect output image file."
             )
-
-        return CheckResult.correct()
-    }
-
-    @DynamicTest(order = 12)
-    fun invalidTransparencyColorTest4(): CheckResult {
-        val colorInputs = listOf("0 0 256", "0 0", "Red", "-1 155 155", "1 1 1 1")
-        for (colorInput in colorInputs) {
-            val main = TestedProgram()
-            var outputString = main.start().trim().lowercase()
-            var position = checkOutput(outputString, 0, "Input the image filename:".lowercase())
-            if (position == -1) return CheckResult(false, "Invalid prompt for the image filename.")
-
-            try {
-                val infile1 = "test${File.separator}image4.png"
-                val inputFile1 = File(infile1)
-                if (!inputFile1.exists()) {
-                    return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
-                }
-                val infile2 = "test${File.separator}watermark2.png"
-                val inputFile2 = File(infile2)
-                if (!inputFile2.exists()) {
-                    return CheckResult(false, "An input test image file doesn't exist. Try reloading the project.")
-                }
-                outputString = main.execute("test${File.separator}image4.png").trim().lowercase()
-                position = checkOutput(outputString, 0, "Input the watermark image filename:".lowercase())
-                if (position == -1) return CheckResult(
-                    false,
-                    "Incorrect output, after an image filename was input."
-                )
-
-                outputString = main.execute("test${File.separator}watermark2.png").trim().lowercase()
-                position = checkOutput(outputString, 0, "Do you want to set a transparency color?".lowercase())
-                if (position == -1) return CheckResult(
-                    false,
-                    "Incorrect output, after a watermark filename was input."
-                )
-            } catch (e: Exception) {
-                return CheckResult(false, "An exception was thrown, when trying to open an image file.")
-            }
-
-            outputString = main.execute("yes").trim().lowercase()
-            position = checkOutput(outputString, 0, "Input a transparency color ([Red] [Green] [Blue]):".lowercase())
-            if (position == -1) return CheckResult(
-                false,
-                "Incorrect output, after accepting the use of a transparent color."
-            )
-
-            outputString = main.execute(colorInput).trim().lowercase()
-            position = checkOutput(outputString, 0, "The transparency color input is invalid.".lowercase())
-            if (position == -1) return CheckResult(
-                false,
-                "Incorrect output, when an invalid transparency color was input."
-            )
-
-            if (!main.isFinished) return CheckResult(false, "The application didn't exit.")
-        }
 
         return CheckResult.correct()
     }
@@ -634,12 +901,57 @@ fun checkOutput(outputString: String, searchPos: Int, vararg checkStr: String): 
     return searchPosition
 }
 
-fun checkIfCorrectOutputFileTransparencyColorS4(per: Int, err: Long,
-                                                imageStr: String, watStr: String, outStr: String, trColor: Color): Boolean {
+fun checkIfCorrectOutputFileAlphaChannelSingleS5(per: Int, err: Long, imageStr: String, watStr: String,
+                                                 outStr: String, posX: Int, posY: Int): Boolean {
     val imageFile = File(imageStr)
     val image = ImageIO.read(imageFile)
     val watermarkFile = File(watStr)
-    val watermark = ImageIO.read(watermarkFile)
+    val wat = ImageIO.read(watermarkFile)
+    val watermark = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_ARGB)
+    for (y in 0 until image.height) {
+        for (x in 0 until image.width) {
+            val color = if (x in posX until (posX + wat.width) && y in posY until (posY + wat.height))
+                Color(wat.getRGB(x - posX, y - posY), true)
+            else Color(0, 0, 0, 0)
+            watermark.setRGB(x, y, color.rgb)
+        }
+    }
+    val outFile = File(outStr)
+    val outputImage = ImageIO.read(outFile)
+    var diff: Long = 0
+    for (y in 0 until image.height) {
+        for (x in 0 until image.width) {
+            val i = Color(image.getRGB(x, y))
+            val w = Color(watermark.getRGB(x, y), true)
+            val o = Color(outputImage.getRGB(x ,y))
+            val oc = if (w.alpha == 0) {
+                Color(i.red, i.green, i.blue)}
+            else Color(
+                ((100 - per) * i.red + per * w.red) / 100,
+                ((100 - per) * i.green + per * w.green) / 100,
+                ((100 - per) * i.blue + per * w.blue) / 100
+            )
+            diff += abs(oc.red - o.red) + abs(oc.green - o.green) + abs(oc.blue - o.blue)
+        }
+    }
+    return diff <= err
+}
+
+fun checkIfCorrectOutputFileTransparencyColorSingleS5(per: Int, err: Long, imageStr: String, watStr: String,
+                                                      outStr: String, trColor: Color, posX: Int, posY: Int): Boolean {
+    val imageFile = File(imageStr)
+    val image = ImageIO.read(imageFile)
+    val watermarkFile = File(watStr)
+    val wat = ImageIO.read(watermarkFile)
+    val watermark = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_RGB)
+    for (y in 0 until image.height) {
+        for (x in 0 until image.width) {
+            val color = if (x in posX until (posX + wat.width) && y in posY until (posY + wat.height))
+                Color(wat.getRGB(x - posX, y - posY))
+            else trColor
+            watermark.setRGB(x, y, color.rgb)
+        }
+    }
     val outFile = File(outStr)
     val outputImage = ImageIO.read(outFile)
     var diff: Long = 0
@@ -661,8 +973,8 @@ fun checkIfCorrectOutputFileTransparencyColorS4(per: Int, err: Long,
     return diff <= err
 }
 
-fun checkIfCorrectOutputFileAlphaS4(per: Int, err: Long,
-                                    imageStr: String, watStr: String, outStr: String): Boolean {
+fun checkIfCorrectOutputFileAlphaChannelGridS5(per: Int, err: Long,
+                                               imageStr: String, watStr: String, outStr: String): Boolean {
     val imageFile = File(imageStr)
     val image = ImageIO.read(imageFile)
     val watermarkFile = File(watStr)
@@ -673,9 +985,10 @@ fun checkIfCorrectOutputFileAlphaS4(per: Int, err: Long,
     for (y in 0 until image.height) {
         for (x in 0 until image.width) {
             val i = Color(image.getRGB(x, y))
-            val w = Color(watermark.getRGB(x, y), true)
+            val w = Color(watermark.getRGB(x % watermark.width, y % watermark.height), true)
             val o = Color(outputImage.getRGB(x ,y))
-            val oc = if (w.alpha == 0) Color(i.red, i.green, i.blue)
+            val oc = if (w.alpha == 0)
+                Color(i.red, i.green, i.blue)
             else Color(
                 ((100 - per) * i.red + per * w.red) / 100,
                 ((100 - per) * i.green + per * w.green) / 100,
@@ -687,8 +1000,8 @@ fun checkIfCorrectOutputFileAlphaS4(per: Int, err: Long,
     return diff <= err
 }
 
-fun checkIfCorrectOutputFileS4(per: Int, err: Long,
-                               imageStr: String, watStr: String, outStr: String): Boolean {
+fun checkIfCorrectOutputFileTransparencyColorGridS5(per: Int, err: Long,
+                                                    imageStr: String, watStr: String, outStr: String, trColor: Color): Boolean {
     val imageFile = File(imageStr)
     val image = ImageIO.read(imageFile)
     val watermarkFile = File(watStr)
@@ -699,9 +1012,11 @@ fun checkIfCorrectOutputFileS4(per: Int, err: Long,
     for (y in 0 until image.height) {
         for (x in 0 until image.width) {
             val i = Color(image.getRGB(x, y))
-            val w = Color(watermark.getRGB(x, y))
+            val w = Color(watermark.getRGB(x % watermark.width, y % watermark.height))
             val o = Color(outputImage.getRGB(x ,y))
-            val oc = Color(
+            val oc = if (w.red == trColor.red && w.green == trColor.green && w.blue == trColor.blue)
+                Color(i.red, i.green, i.blue)
+            else Color(
                 ((100 - per) * i.red + per * w.red) / 100,
                 ((100 - per) * i.green + per * w.green) / 100,
                 ((100 - per) * i.blue + per * w.blue) / 100
